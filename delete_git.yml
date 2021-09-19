@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: faire une mise à jour des repository
+    apt:
+      update_cache: yes
+
+  - name: installer git sur le node
+    apt:
+      name: git
+      state: absent

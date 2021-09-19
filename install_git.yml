@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: faire une mise à jour des repository
+    apt:
+      update_cache: yes
+
+  - name: installer git sur le node
+    apt:
+      name: git
+      state: latest
+
+  - name: installer les dépendances
+    apt:
+      name: software-properties-common
+      state: latest
+  - name: installer les dépendances
+    apt:
+      name: apt-transport-https
+      state: latest
+  - name: installer les dépendances
+    apt:
+      name: curl
+      state: latest
