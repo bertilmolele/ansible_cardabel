@@ -5,7 +5,7 @@
   - name: faire une mise à jour des repository
     apt:
       update_cache: yes
-
+    when: ansible_distribution == "debian"
   - name: installer git sur le node
     apt:
       name: git
