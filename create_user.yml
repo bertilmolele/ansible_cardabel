@@ -1,0 +1,24 @@
+---
+- hosts: node_debian
+  become: true
+  tasks:
+  - name: creation dun user mitch
+    tags: machine test
+    user:
+      name: mitch
+      groups: root
+
+  - name: ajout de la clé ssh pour mitch
+    tags: machine test
+    authorized_key:
+      user: mitch
+      key: "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAH1WU1MOqQgmeZjNN+NQQrpEO+G2YcCpwh1vWOi0Jfv5P4O7sOH0UiaJQbdeOZFMVY6hrdydNYCgVVrEXGK54hJegFHXYehA9C0MkOr4+2t1Wssi+ys6kI2sOzjI7iBzPGXem9XPiZxERwLmubFzYZtY4emyebYQux3w5O2G0lgk22W0w== bertil@Ansible"
+
+  - name: ajout au fichier sudoers
+    tags: machine test
+    copy:
+      src: sudoer_mitch
+      dest: /etc/sudoers.d/mitch
+      owner: root
+      group: root
+      mode: 0440

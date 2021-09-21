@@ -1,0 +1,12 @@
+---
+- hosts: node_debian
+  become: true
+  tags: machine test
+  pre_tasks:
+
+  - name: installation MAJ
+    tags: machine test
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Debian"
